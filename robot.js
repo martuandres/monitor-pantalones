@@ -59,7 +59,7 @@ async function chequearStock() {
     });
 
     // Filtramos tus favoritos (Negro y Gris Melange)
-    const misFavoritos = stock.filter(s => s.nombre === 'Negro' || s.nombre === 'Celeste');
+    const misFavoritos = stock.filter(s => s.nombre === 'Negro' || s.nombre === 'Gris melange');
 
     for (const panta of misFavoritos) {
       if (panta.disponible) {
