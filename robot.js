@@ -1,9 +1,11 @@
 const puppeteer = require('puppeteer');
 
-// --- TUS DATOS DE TELEGRAM ---
-const TOKEN = 'AAFOtaznuRjPIXZmyKzrAP2vEOYq2HN5glU';
-const CHAT_ID = '8177846054';
-// -----------------------------
+// --- CONFIGURACIÓN ---
+// Si estás en GitHub usa los Secrets, si estás en tu Mac usa estos números:
+const TOKEN = process.env.TELEGRAM_TOKEN || '7581512411:AAFOtaznuRjPIXZmyKzrAP2vEOYq2HN5glU';
+const CHAT_ID = process.env.TELEGRAM_ID || '8177846054';
+// ---------------------
+
 
 async function enviarTelegram(mensaje) {
   const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(mensaje)}`;
