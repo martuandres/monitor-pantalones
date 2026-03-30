@@ -7,13 +7,20 @@ const CHAT_ID = process.env.TELEGRAM_ID;
 
 
 async function enviarTelegram(mensaje) {
-  const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(mensaje)}`;
+  // Le sumamos el parámetro para FORZAR el sonido en el celu
+  const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(mensaje)}&disable_notification=false`;
+  
   try {
-    // Usamos fetch (una Promesa) para conectarnos con la API de Telegram
-    await fetch(url);
-    console.log("📨 Notificación enviada a tu Telegram.");
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    if (data.ok) {
+      console.log("📨 Telegram enviado con orden de SONAR.");
+    } else {
+      console.log("❌ Telegram respondió pero con error:", data.description);
+    }
   } catch (e) {
-    console.log("❌ Error al enviar el mensaje de Telegram.");
+    console.log("❌ Error de red al contactar a Telegram.");
   }
 }
 
