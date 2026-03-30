@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
 
 // --- CONFIGURACIÓN ---
-// Si estás en GitHub usa los Secrets, si estás en tu Mac usa estos números:
 const TOKEN = process.env.TELEGRAM_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_ID;
 // ---------------------
@@ -20,7 +19,10 @@ async function enviarTelegram(mensaje) {
 
 async function chequearStock() {
   // 'headless: "new"' hace que el robot sea invisible y no te moleste
-  const browser = await puppeteer.launch({ headless: "new" }); 
+  const browser = await puppeteer.launch({ 
+  headless: "new", 
+  args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+});
   const page = await browser.newPage();
 
   try {
