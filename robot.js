@@ -81,10 +81,5 @@ async function chequearStock() {
   await browser.close();
 }
 
-// Programamos para que se ejecute cada 1 hora (3600000 milisegundos)
-const UNA_HORA = 3600000;
-setInterval(chequearStock, UNA_HORA);
-
-// Lo corremos por primera vez ahora mismo
-chequearStock();
-console.log("🚀 Robot activado. Podés minimizar esta terminal.");
+chequearStock(); 
+console.log("🚀 Robot ejecutado.");
